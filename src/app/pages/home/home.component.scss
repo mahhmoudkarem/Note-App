@@ -1,0 +1,19 @@
+#note{
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: #212529;
+    color: white;
+    outline: transparent;
+    padding: 20px;
+    box-shadow: 2px 2px 2px white;
+}
+
+
+#contentNote{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 160px;
+    overflow-y: auto;
+    text-overflow: ellipsis;
+}

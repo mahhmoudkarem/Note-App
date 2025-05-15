@@ -1,0 +1,91 @@
+<app-navbar isLogin="true" ></app-navbar>
+
+
+<main class="container-fluid p-4 w-100">
+    <!-- Add Note Section -->
+    <div id="addNote" class="text-center">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNoteModal">
+        Add New Note
+      </button>
+  
+      <!-- Add Note Modal -->
+      <div class="modal fade" id="addNoteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="addNoteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="addNoteModalLabel">Add New Note</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="noteForm" (ngSubmit)="addNote()">
+                <input formControlName="title"
+                  [class.is-valid]="noteForm.get('title')?.valid && noteForm.get('title')?.touched"
+                  [class.is-invalid]="noteForm.get('title')?.invalid && noteForm.get('title')?.touched"
+                  class="form-control w-100 rounded-3 p-2 text-muted mb-3" type="text" placeholder="Type a title..." />
+  
+                <textarea formControlName="content"
+                  [class.is-valid]="noteForm.get('content')?.valid && noteForm.get('content')?.touched"
+                  [class.is-invalid]="noteForm.get('content')?.invalid && noteForm.get('content')?.touched"
+                  class="form-control w-100 rounded-3 p-2 text-muted mb-3" placeholder="Type content..."></textarea>
+  
+                <div class="modal-footer">
+                  <button type="submit" data-bs-dismiss="modal" class="btn btn-primary px-4">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Notes List -->
+    <div class="container">
+      <div class="row g-3 mt-4">
+        @for (note of noteDetails; track note._id) {
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="text-center border rounded-3 p-3 shadow-sm">
+              <h3 class="fw-bold text-decoration-underline">{{ note.title }}</h3>
+              <p class="my-3" id="contentNote">{{ note.content }}</p>
+              <div class="mb-2">
+                <button (click)="takeValue(note)" data-bs-toggle="modal" data-bs-target="#updateNoteModal"
+                  class="btn btn-outline-warning me-2">Update</button>
+                <button (click)="deleteNote(note._id)" class="btn btn-outline-danger">Delete</button>
+              </div>
+              <span class="text-light-emphasis d-block mt-2">{{ note.createdAt | date: 'medium' }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  
+    <!-- Update Note Modal -->
+    <div class="modal fade" id="updateNoteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="updateNoteModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="updateNoteModalLabel">Update Note</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="updateNoteForm" (ngSubmit)="updateNote(updateNoteForm.get('_id')?.value)">
+              <input formControlName="title"
+
+                class="form-control w-100 rounded-3 p-2 text-muted mb-3" type="text" placeholder="Type a title..." />
+  
+              <textarea formControlName="content"
+
+                class="form-control w-100 rounded-3 p-2 text-muted mb-3" placeholder="Type content..."></textarea>
+  
+              <div class="modal-footer">
+                <button type="submit" data-bs-dismiss="modal" class="btn btn-warning px-4">Update</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  

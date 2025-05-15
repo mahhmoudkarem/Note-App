@@ -1,0 +1,62 @@
+<app-navbar isLogin="true"></app-navbar>
+
+
+<section class="w-100 p-sm-5  p-3">
+
+    <form [formGroup]="registerForm" class=" w-75 mx-auto p-3 shadow-lg rounded-4" (ngSubmit)="userRegister()">
+        <h3 class="text-center mb-4">Register</h3>
+        @if (errMsg) {<p class=" alert alert-danger mb-4" >{{errMsg}}</p>}
+
+<!-- Name -->
+<input formControlName="name"
+       [class.is-valid]="registerForm.get('name')?.valid && registerForm.get('name')?.touched"
+       [class.is-invalid]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+       class="form-control w-100 rounded-3 p-2 text-muted mb-3"
+       type="text"
+       placeholder="Type of name..."
+       id="name" />
+
+<!-- Email -->
+<input formControlName="email"
+       [class.is-valid]="registerForm.get('email')?.valid && registerForm.get('email')?.touched"
+       [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+       class="form-control w-100 rounded-3 p-2 text-muted mb-3"
+       type="email"
+       placeholder="Type of email..."
+       id="email" />
+
+<!-- Password -->
+<input formControlName="password"
+       [class.is-valid]="registerForm.get('password')?.valid && registerForm.get('password')?.touched"
+       [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+       class="form-control w-100 rounded-3 p-2 text-muted mb-3"
+       type="text"
+       placeholder="Type of password..."
+       id="password" />
+
+<!-- Age -->
+<input formControlName="age"
+       [class.is-valid]="registerForm.get('age')?.valid && registerForm.get('age')?.touched"
+       [class.is-invalid]="registerForm.get('age')?.invalid && registerForm.get('age')?.touched"
+       class="form-control w-100 rounded-3 p-2 text-muted mb-3"
+       type="number"
+       placeholder="Type of age..."
+       id="age" />
+
+<!-- Phone -->
+<input formControlName="phone"
+       [class.is-valid]="registerForm.get('phone')?.valid && registerForm.get('phone')?.touched"
+       [class.is-invalid]="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched"
+       class="form-control w-100 rounded-3 p-2 text-muted mb-3"
+       type="tel"
+       placeholder="Type of phone..."
+       id="phone" />
+
+        <div class="w-100 text-center">
+            <button type="submit" class=" btn btn-primary text-center px-5">Register
+              @if (isLoading) {<i class="fa-solid fa-circle-notch fa-spin ms-2"></i>}
+            </button>
+        </div>
+    </form>
+
+</section>

@@ -1,0 +1,37 @@
+<app-navbar isLogin="false"></app-navbar>
+
+<section class="w-100 p-sm-5  p-3">
+
+    <form [formGroup]="loginForm" class=" w-75 mx-auto p-3 shadow-lg rounded-4" (ngSubmit)="userLogin()">
+        <h3 class="text-center mb-4">Login</h3>
+        @if (errMsg) {<p class=" alert alert-danger mb-4" >Email of password is wrong</p>}
+
+
+
+<!-- Email -->
+<input formControlName="email"
+
+       class="form-control w-100 rounded-3 p-2 text-muted mb-3"
+       type="email"
+       placeholder="Type of email..."
+       id="email" />
+
+<!-- Password -->
+<input formControlName="password"
+
+       class="form-control w-100 rounded-3 p-2 text-muted mb-3"
+       type="password"
+       placeholder="Type of password..."
+       id="password" />
+
+
+
+        <div class="w-100 text-center">
+            <button type="submit" class=" btn btn-primary text-center px-5">Login
+                @if (isLoading) {<i class="fa-solid fa-circle-notch fa-spin ms-2"></i>}
+
+            </button>
+        </div>
+    </form>
+
+</section>
