@@ -1,4 +1,4 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class NavbarComponent {
   private readonly router = inject(Router)
-  isLogin:WritableSignal<boolean> = signal(false);
+  isLogin = input<boolean>(true)
   logout(){
     
     localStorage.removeItem('token');
